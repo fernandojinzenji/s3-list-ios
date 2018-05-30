@@ -51,7 +51,7 @@ class ListView: UIView {
         itemsView = UIView()
         itemsView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(itemsView)
-        itemsView.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 4.0).isActive = true
+        itemsView.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 18.0).isActive = true
         itemsView.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor).isActive = true
         itemsView.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor).isActive = true
         itemsView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -12.0).isActive = true
@@ -96,6 +96,12 @@ extension ListView {
         self.itemsView.addSubview(testView)
     }
     
+    @objc private func checkboxTapped(sender: UIButton) {
+        sender.setImage(#imageLiteral(resourceName: "checked_icon"), for: .normal)
+        
+        
+    }
+    
 }
 
 // Public functions
@@ -104,7 +110,48 @@ extension ListView {
     public func listItems(items: [Item]) {
         self.items = items
         
-        
+        for index in 0..<items.count {
+            
+            let item = items[index]
+            
+            let rowView = UIView()
+            rowView.translatesAutoresizingMaskIntoConstraints = false
+            itemsView.addSubview(rowView)
+            let topAnchorValue = (8.0 * CGFloat(index)) + (48.0 * CGFloat(index))
+            rowView.topAnchor.constraint(equalTo: itemsView.topAnchor, constant: topAnchorValue).isActive = true
+            rowView.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
+            rowView.leftAnchor.constraint(equalTo: itemsView.leftAnchor, constant: 4.0).isActive = true
+            rowView.rightAnchor.constraint(equalTo: itemsView.rightAnchor, constant: -4.0).isActive = true
+            
+            let checkbox = UIButton()
+            checkbox.setImage(#imageLiteral(resourceName: "unchecked_icon"), for: .normal)
+            checkbox.translatesAutoresizingMaskIntoConstraints = false
+            checkbox.tag = item.itemID
+            checkbox.addTarget(self, action: #selector(checkboxTapped(sender:)), for: .touchUpInside)
+            rowView.addSubview(checkbox)
+            checkbox.centerYAnchor.constraint(equalTo: rowView.centerYAnchor).isActive = true
+            checkbox.leftAnchor.constraint(equalTo: rowView.leftAnchor).isActive = true
+            checkbox.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
+            checkbox.widthAnchor.constraint(equalToConstant: 36.0).isActive = true
+            
+            let itemNameLabel = UILabel()
+            itemNameLabel.text = item.name.capitalized
+            itemNameLabel.font = UIFont.getAppFontLIGHT(size: 22.0)
+            itemNameLabel.textColor = UIColor.darkGray
+            itemNameLabel.translatesAutoresizingMaskIntoConstraints = false
+            itemsView.addSubview(itemNameLabel)
+            itemNameLabel.centerYAnchor.constraint(equalTo: rowView.centerYAnchor).isActive = true
+            itemNameLabel.leftAnchor.constraint(equalTo: checkbox.rightAnchor, constant: 8.0).isActive = true
+            
+            let separator = UIView()
+            separator.backgroundColor = UIColor.lightGray
+            separator.translatesAutoresizingMaskIntoConstraints = false
+            itemsView.addSubview(separator)
+            separator.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+            separator.topAnchor.constraint(equalTo: rowView.bottomAnchor, constant: 2.0).isActive = true
+            separator.leftAnchor.constraint(equalTo: itemNameLabel.leftAnchor).isActive = true
+            separator.rightAnchor.constraint(equalTo: rowView.rightAnchor).isActive = true
+        }
     }
     
     public func generateAddItem() -> UIView {

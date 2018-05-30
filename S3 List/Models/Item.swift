@@ -10,9 +10,11 @@ import Foundation
 
 class Item {
     
+    var itemID: Int
     var name: String
     
-    init(name: String) {
+    init(itemID: Int, name: String) {
+        self.itemID = itemID
         self.name = name
     }
     

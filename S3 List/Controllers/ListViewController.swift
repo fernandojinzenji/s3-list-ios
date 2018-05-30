@@ -19,9 +19,10 @@ class ListViewController: UIViewController {
         self.view = self.contentView
         
         var items = [Item]()
-        items.append(Item(name: "Milk"))
-        items.append(Item(name: "Cheese"))
-        items.append(Item(name: "Chicken"))
+        items.append(Item(itemID: 11, name: "Milk"))
+        items.append(Item(itemID: 12, name: "Cheese"))
+        items.append(Item(itemID: 13, name: "Chicken"))
+        items.append(Item(itemID: 14, name: "Ice cream"))
         
         self.contentView.listItems(items: items)
     }
