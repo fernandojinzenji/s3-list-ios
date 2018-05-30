@@ -12,8 +12,8 @@ class Item {
     
     var name: String
     
-    init() {
-        self.name = ""
+    init(name: String) {
+        self.name = name
     }
     
 }

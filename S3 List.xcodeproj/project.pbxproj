@@ -75,7 +75,6 @@
 		9C28DEEE20BDF3AF00A65809 = {
 			isa = PBXGroup;
 			children = (
-				9C6D643920BE6A1600D19856 /* Fonts */,
 				9C28DEF920BDF3AF00A65809 /* S3 List */,
 				9C28DF0E20BDF3B300A65809 /* S3 ListTests */,
 				9C28DEF820BDF3AF00A65809 /* Products */,
@@ -138,21 +137,10 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		9C6D643920BE6A1600D19856 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				9C6D643B20BE6A2400D19856 /* SF-Pro-Display-Bold.otf */,
-				9C6D643D20BE6A2400D19856 /* SF-Pro-Display-Light.otf */,
-				9C6D643C20BE6A2400D19856 /* SF-Pro-Display-Medium.otf */,
-				9C6D643A20BE6A2400D19856 /* SF-Pro-Display-Regular.otf */,
-			);
-			name = Fonts;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		9C6D644220BE6B7700D19856 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9C6D644820BE79E200D19856 /* Fonts */,
 				9C6D644520BE6CA200D19856 /* Extensions */,
 				9C28DEFA20BDF3AF00A65809 /* AppDelegate.swift */,
 				9C28DF0120BDF3B300A65809 /* Assets.xcassets */,
@@ -167,6 +155,17 @@
 				9C6D644620BE6CB900D19856 /* UIFont+custom.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C6D644820BE79E200D19856 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9C6D643B20BE6A2400D19856 /* SF-Pro-Display-Bold.otf */,
+				9C6D643D20BE6A2400D19856 /* SF-Pro-Display-Light.otf */,
+				9C6D643C20BE6A2400D19856 /* SF-Pro-Display-Medium.otf */,
+				9C6D643A20BE6A2400D19856 /* SF-Pro-Display-Regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -18,6 +18,12 @@ class ListViewController: UIViewController {
         self.contentView = ListView()
         self.view = self.contentView
         
+        var items = [Item]()
+        items.append(Item(name: "Milk"))
+        items.append(Item(name: "Cheese"))
+        items.append(Item(name: "Chicken"))
+        
+        self.contentView.listItems(items: items)
     }
 
 }
