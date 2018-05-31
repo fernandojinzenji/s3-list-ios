@@ -12,6 +12,7 @@ import UIKit
 class ListView: UIView {
     
     var itemsView: UIView!
+    var noItemsView: UIView!
     var noItemsLabel: UILabel!
     var addFirstButton: UIButton!
     
@@ -56,14 +57,22 @@ class ListView: UIView {
         itemsView.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor).isActive = true
         itemsView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -12.0).isActive = true
         
+        noItemsView = UIView()
+        noItemsView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(noItemsView)
+        noItemsView.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 18.0).isActive = true
+        noItemsView.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor).isActive = true
+        noItemsView.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor).isActive = true
+        noItemsView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -12.0).isActive = true
+        
         noItemsLabel = UILabel()
         noItemsLabel.text = "No items yet"
         noItemsLabel.font = UIFont.getAppFontLIGHT(size: 22.0)
         noItemsLabel.textColor = UIColor.darkGray
         noItemsLabel.translatesAutoresizingMaskIntoConstraints = false
-        itemsView.addSubview(noItemsLabel)
-        noItemsLabel.centerXAnchor.constraint(equalTo: itemsView.centerXAnchor).isActive = true
-        noItemsLabel.centerYAnchor.constraint(equalTo: itemsView.centerYAnchor, constant: -22.0).isActive = true
+        noItemsView.addSubview(noItemsLabel)
+        noItemsLabel.centerXAnchor.constraint(equalTo: noItemsView.centerXAnchor).isActive = true
+        noItemsLabel.centerYAnchor.constraint(equalTo: noItemsView.centerYAnchor, constant: -22.0).isActive = true
         
         addFirstButton = UIButton()
         addFirstButton.titleLabel?.font = UIFont.getAppFontREGULAR(size: 22.0)
@@ -71,8 +80,8 @@ class ListView: UIView {
         addFirstButton.setTitleColor(UIColor.blue, for: .normal)
         addFirstButton.addTarget(self, action: #selector(addFirstButtonTapped), for: .touchUpInside)
         addFirstButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(addFirstButton)
-        addFirstButton.centerXAnchor.constraint(equalTo: itemsView.centerXAnchor).isActive = true
+        noItemsView.addSubview(addFirstButton)
+        addFirstButton.centerXAnchor.constraint(equalTo: noItemsView.centerXAnchor).isActive = true
         addFirstButton.topAnchor.constraint(equalTo: noItemsLabel.bottomAnchor, constant: 4.0).isActive = true
     }
     
@@ -81,8 +90,8 @@ class ListView: UIView {
     }
     
     private func noItemsSectionHidden(isHidden: Bool) {
-        noItemsLabel.isHidden = isHidden
-        addFirstButton.isHidden = isHidden
+        noItemsView.isHidden = isHidden
+        itemsView.isHidden = !isHidden
     }
 }
 
@@ -91,38 +100,49 @@ extension ListView {
     
     @objc private func addFirstButtonTapped() {
         self.noItemsSectionHidden(isHidden: true)
-        
-        let testView = generateAddItem()
-        self.itemsView.addSubview(testView)
     }
     
     @objc private func checkboxTapped(sender: UIButton) {
+        
+        items.remove(at: 0)
+        
         sender.setImage(#imageLiteral(resourceName: "checked_icon"), for: .normal)
         
-        
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { (t) in
+            
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                sender.alpha = 0.0
+                sender.superview?.removeFromSuperview()
+            }, completion: { (success) in
+                self.listItems(items: self.items)
+            })
+        }
     }
-    
 }
 
 // Public functions
 extension ListView {
     
     public func listItems(items: [Item]) {
+        
+        self.itemsView.subviews.forEach { $0.removeFromSuperview() }
         self.items = items
         
+        self.noItemsSectionHidden(isHidden: (self.items.count > 0))
+        
         for index in 0..<items.count {
-            
+
             let item = items[index]
-            
+
             let rowView = UIView()
             rowView.translatesAutoresizingMaskIntoConstraints = false
             itemsView.addSubview(rowView)
-            let topAnchorValue = (8.0 * CGFloat(index)) + (48.0 * CGFloat(index))
+            let topAnchorValue = 56.0 * CGFloat(index)
             rowView.topAnchor.constraint(equalTo: itemsView.topAnchor, constant: topAnchorValue).isActive = true
             rowView.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
             rowView.leftAnchor.constraint(equalTo: itemsView.leftAnchor, constant: 4.0).isActive = true
             rowView.rightAnchor.constraint(equalTo: itemsView.rightAnchor, constant: -4.0).isActive = true
-            
+
             let checkbox = UIButton()
             checkbox.setImage(#imageLiteral(resourceName: "unchecked_icon"), for: .normal)
             checkbox.translatesAutoresizingMaskIntoConstraints = false
@@ -133,7 +153,7 @@ extension ListView {
             checkbox.leftAnchor.constraint(equalTo: rowView.leftAnchor).isActive = true
             checkbox.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
             checkbox.widthAnchor.constraint(equalToConstant: 36.0).isActive = true
-            
+
             let itemNameLabel = UILabel()
             itemNameLabel.text = item.name.capitalized
             itemNameLabel.font = UIFont.getAppFontLIGHT(size: 22.0)
@@ -142,23 +162,37 @@ extension ListView {
             itemsView.addSubview(itemNameLabel)
             itemNameLabel.centerYAnchor.constraint(equalTo: rowView.centerYAnchor).isActive = true
             itemNameLabel.leftAnchor.constraint(equalTo: checkbox.rightAnchor, constant: 8.0).isActive = true
-            
+
             let separator = UIView()
             separator.backgroundColor = UIColor.lightGray
             separator.translatesAutoresizingMaskIntoConstraints = false
-            itemsView.addSubview(separator)
+            rowView.addSubview(separator)
             separator.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
             separator.topAnchor.constraint(equalTo: rowView.bottomAnchor, constant: 2.0).isActive = true
             separator.leftAnchor.constraint(equalTo: itemNameLabel.leftAnchor).isActive = true
             separator.rightAnchor.constraint(equalTo: rowView.rightAnchor).isActive = true
         }
+        
+        let newItemTextField = UITextField()
+        newItemTextField.translatesAutoresizingMaskIntoConstraints = false
+        newItemTextField.attributedPlaceholder = NSAttributedString(string: "New item",
+                                                                    attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        newItemTextField.font = UIFont.getAppFontLIGHT(size: 22.0)
+        newItemTextField.textColor = UIColor.darkGray
+        newItemTextField.returnKeyType = .done
+        itemsView.addSubview(newItemTextField)
+        newItemTextField.topAnchor.constraint(equalTo: itemsView.topAnchor, constant: 56.0 * CGFloat(items.count)).isActive = true
+        newItemTextField.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
+        newItemTextField.leftAnchor.constraint(equalTo: itemsView.leftAnchor, constant: 48.0).isActive = true
+        newItemTextField.rightAnchor.constraint(equalTo: itemsView.rightAnchor, constant: -4.0).isActive = true
+        
+        let separator = UIView()
+        separator.backgroundColor = UIColor.lightGray
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        itemsView.addSubview(separator)
+        separator.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        separator.topAnchor.constraint(equalTo: newItemTextField.bottomAnchor, constant: 2.0).isActive = true
+        separator.leftAnchor.constraint(equalTo: newItemTextField.leftAnchor).isActive = true
+        separator.rightAnchor.constraint(equalTo: newItemTextField.rightAnchor).isActive = true
     }
-    
-    public func generateAddItem() -> UIView {
-        let view = UIView()
-        view.backgroundColor = .red
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }
-    
 }
