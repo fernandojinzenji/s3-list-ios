@@ -15,6 +15,7 @@ class ListView: UIView {
     var noItemsView: UIView!
     var noItemsLabel: UILabel!
     var addFirstButton: UIButton!
+    var undoButton: UIButton!
     
     public var items = [Item]()
     
@@ -49,10 +50,25 @@ class ListView: UIView {
         lastUpdateLabel.topAnchor.constraint(equalTo: listNameLabel.bottomAnchor, constant: 4.0).isActive = true
         lastUpdateLabel.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor, constant: 16.0).isActive = true
         
+        undoButton = UIButton()
+        undoButton.setTitle("Undo", for: .normal)
+        undoButton.titleLabel?.font = UIFont.getAppFontREGULAR(size: 17.0)
+        undoButton.layer.borderWidth = 0.5
+        undoButton.layer.borderColor = UIColor.darkGray.cgColor
+        undoButton.backgroundColor = UIColor.lightGray
+        undoButton.layer.cornerRadius = 18.0
+        undoButton.translatesAutoresizingMaskIntoConstraints = false
+        undoButton.isHidden = true
+        self.addSubview(undoButton)
+        undoButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        undoButton.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 12.0).isActive = true
+        undoButton.widthAnchor.constraint(equalToConstant: 72.0).isActive = true
+        undoButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        
         itemsView = UIView()
         itemsView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(itemsView)
-        itemsView.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 18.0).isActive = true
+        itemsView.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 24.0).isActive = true
         itemsView.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor).isActive = true
         itemsView.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor).isActive = true
         itemsView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -12.0).isActive = true
@@ -93,6 +109,10 @@ class ListView: UIView {
         noItemsView.isHidden = isHidden
         itemsView.isHidden = !isHidden
     }
+    
+    private func showUndo(isHidden: Bool) {
+        undoButton.isHidden = isHidden
+    }
 }
 
 // Button handlers
@@ -108,11 +128,15 @@ extension ListView {
         
         sender.setImage(#imageLiteral(resourceName: "checked_icon"), for: .normal)
         
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { (t) in
+        showUndo(isHidden: false)
+        
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (t) in
             
-            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
                 sender.alpha = 0.0
                 sender.superview?.removeFromSuperview()
+                
+                self.showUndo(isHidden: true)
             }, completion: { (success) in
                 self.listItems(items: self.items)
             })
