@@ -11,12 +11,15 @@ import UIKit
 
 class ListView: UIView {
     
+    var scrollView: UIScrollView!
+    var refreshControl: UIRefreshControl!
     var itemsView: UIView!
     var noItemsView: UIView!
     var noItemsLabel: UILabel!
     var addFirstButton: UIButton!
     var undoButton: UIButton!
     var newItemTextField: UITextField!
+    var itemsViewHeightConstraint: NSLayoutConstraint!
     
     public var items = [Item]()
     
@@ -66,13 +69,28 @@ class ListView: UIView {
         undoButton.widthAnchor.constraint(equalToConstant: 72.0).isActive = true
         undoButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
+        
+        scrollView = UIScrollView()
+        scrollView.refreshControl = refreshControl
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(scrollView)
+        scrollView.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 24.0).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor).isActive = true
+        
         itemsView = UIView()
         itemsView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(itemsView)
-        itemsView.topAnchor.constraint(equalTo: lastUpdateLabel.bottomAnchor, constant: 24.0).isActive = true
-        itemsView.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor).isActive = true
-        itemsView.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor).isActive = true
-        itemsView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -12.0).isActive = true
+        scrollView.addSubview(itemsView)
+        itemsView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        itemsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        itemsView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+        itemsView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
+        itemsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        itemsViewHeightConstraint = itemsView.heightAnchor.constraint(equalToConstant: 2000.0)
+        itemsViewHeightConstraint.isActive = true
         
         noItemsView = UIView()
         noItemsView.translatesAutoresizingMaskIntoConstraints = false
@@ -143,6 +161,14 @@ extension ListView {
             }, completion: { (success) in
                 self.listItems(items: self.items)
             })
+        }
+    }
+    
+    @objc private func refreshControlPulled() {
+        print("something")
+        
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (t) in
+            self.refreshControl.endRefreshing()
         }
     }
 }
