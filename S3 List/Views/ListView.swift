@@ -120,7 +120,9 @@ class ListView: UIView {
 extension ListView {
     
     @objc private func addFirstButtonTapped() {
-        self.noItemsSectionHidden(isHidden: true)
+        noItemsSectionHidden(isHidden: true)
+        
+        newItemTextField.becomeFirstResponder()
     }
     
     @objc private func checkboxTapped(sender: UIButton) {
@@ -223,6 +225,7 @@ extension ListView {
     }
     
     public func dismissKeyboard() {
+        self.listItems(items: self.items)
         newItemTextField.resignFirstResponder()
     }
 }
@@ -231,6 +234,14 @@ extension ListView {
 extension ListView: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard let text = textField.text, text != "" else {
+            dismissKeyboard()
+            return true
+        }
+        
+        self.items.append(Item(itemID: 99, name: text))
+//        self.listItems(items: self.items)
         dismissKeyboard()
         return true
     }
