@@ -27,4 +27,8 @@ class ListViewController: UIViewController {
         self.contentView.listItems(items: items)
     }
 
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.contentView.dismissKeyboard()
+    }
+    
 }

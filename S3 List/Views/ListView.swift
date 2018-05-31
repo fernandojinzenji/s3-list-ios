@@ -16,6 +16,7 @@ class ListView: UIView {
     var noItemsLabel: UILabel!
     var addFirstButton: UIButton!
     var undoButton: UIButton!
+    var newItemTextField: UITextField!
     
     public var items = [Item]()
     
@@ -197,13 +198,14 @@ extension ListView {
             separator.rightAnchor.constraint(equalTo: rowView.rightAnchor).isActive = true
         }
         
-        let newItemTextField = UITextField()
+        newItemTextField = UITextField()
         newItemTextField.translatesAutoresizingMaskIntoConstraints = false
         newItemTextField.attributedPlaceholder = NSAttributedString(string: "New item",
                                                                     attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])
         newItemTextField.font = UIFont.getAppFontLIGHT(size: 22.0)
         newItemTextField.textColor = UIColor.darkGray
         newItemTextField.returnKeyType = .done
+        newItemTextField.delegate = self
         itemsView.addSubview(newItemTextField)
         newItemTextField.topAnchor.constraint(equalTo: itemsView.topAnchor, constant: 56.0 * CGFloat(items.count)).isActive = true
         newItemTextField.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
@@ -218,5 +220,18 @@ extension ListView {
         separator.topAnchor.constraint(equalTo: newItemTextField.bottomAnchor, constant: 2.0).isActive = true
         separator.leftAnchor.constraint(equalTo: newItemTextField.leftAnchor).isActive = true
         separator.rightAnchor.constraint(equalTo: newItemTextField.rightAnchor).isActive = true
+    }
+    
+    public func dismissKeyboard() {
+        newItemTextField.resignFirstResponder()
+    }
+}
+
+// UITextFieldDelegate
+extension ListView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
     }
 }
