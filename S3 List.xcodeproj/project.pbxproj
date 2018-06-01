@@ -22,6 +22,9 @@
 		9C6D644420BE6B8B00D19856 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6D644320BE6B8B00D19856 /* ListView.swift */; };
 		9C6D644720BE6CB900D19856 /* UIFont+custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6D644620BE6CB900D19856 /* UIFont+custom.swift */; };
 		9C8CB9BB20C08FB300DAC945 /* ChangeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9BA20C08FB300DAC945 /* ChangeListViewController.swift */; };
+		9C8CB9BD20C101F800DAC945 /* ChangeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9BC20C101F800DAC945 /* ChangeListView.swift */; };
+		9C8CB9BF20C10F3600DAC945 /* ChangeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9BE20C10F3600DAC945 /* ChangeListTableViewCell.swift */; };
+		9C8CB9C120C111C000DAC945 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9C020C111C000DAC945 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		9C6D644320BE6B8B00D19856 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		9C6D644620BE6CB900D19856 /* UIFont+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+custom.swift"; sourceTree = "<group>"; };
 		9C8CB9BA20C08FB300DAC945 /* ChangeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListViewController.swift; sourceTree = "<group>"; };
+		9C8CB9BC20C101F800DAC945 /* ChangeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListView.swift; sourceTree = "<group>"; };
+		9C8CB9BE20C10F3600DAC945 /* ChangeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListTableViewCell.swift; sourceTree = "<group>"; };
+		9C8CB9C020C111C000DAC945 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				9C6D644320BE6B8B00D19856 /* ListView.swift */,
+				9C8CB9BC20C101F800DAC945 /* ChangeListView.swift */,
+				9C8CB9BE20C10F3600DAC945 /* ChangeListTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,6 +135,7 @@
 				9C28DF2220BDF5ED00A65809 /* MainViewController.swift */,
 				9C6D643520BE690D00D19856 /* ListViewController.swift */,
 				9C8CB9BA20C08FB300DAC945 /* ChangeListViewController.swift */,
+				9C8CB9C020C111C000DAC945 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,11 +285,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C28DF2120BDF46D00A65809 /* Item.swift in Sources */,
+				9C8CB9BD20C101F800DAC945 /* ChangeListView.swift in Sources */,
+				9C8CB9C120C111C000DAC945 /* SettingsViewController.swift in Sources */,
 				9C6D643620BE690D00D19856 /* ListViewController.swift in Sources */,
 				9C8CB9BB20C08FB300DAC945 /* ChangeListViewController.swift in Sources */,
 				9C6D644420BE6B8B00D19856 /* ListView.swift in Sources */,
 				9C6D644720BE6CB900D19856 /* UIFont+custom.swift in Sources */,
 				9C28DEFB20BDF3AF00A65809 /* AppDelegate.swift in Sources */,
+				9C8CB9BF20C10F3600DAC945 /* ChangeListTableViewCell.swift in Sources */,
 				9C28DF1F20BDF45800A65809 /* List.swift in Sources */,
 				9C28DF2320BDF5ED00A65809 /* MainViewController.swift in Sources */,
 			);
