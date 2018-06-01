@@ -9,15 +9,18 @@
 import UIKit
 
 class SettingsView: UIView {
+    
+    let theme = ThemeManager.getTheme()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = theme.backgroundColor
         
         // Bottom
         let versionLabel = UILabel()
         versionLabel.text = "Version 1.0"
+        versionLabel.textColor = theme.textColor
         versionLabel.font = UIFont.getAppFontLIGHT(size: 17.0)
         versionLabel.textColor = UIColor.darkGray
         versionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +30,7 @@ class SettingsView: UIView {
         
         let developedByLabel = UILabel()
         developedByLabel.text = "Developed by Fernando Jinzenji"
+        developedByLabel.textColor = theme.textColor
         developedByLabel.font = UIFont.getAppFontLIGHT(size: 17.0)
         developedByLabel.textColor = UIColor.darkGray
         developedByLabel.translatesAutoresizingMaskIntoConstraints = false

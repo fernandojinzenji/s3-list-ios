@@ -41,7 +41,7 @@ class ListView: UIView {
         listNameLabel.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor, constant: 16.0).isActive = true
         
         let shareButton = UIButton()
-        shareButton.setImage(#imageLiteral(resourceName: "sharebutton"), for: .normal)
+        shareButton.setImage(theme.useClearButtons ? #imageLiteral(resourceName: "sharebutton_clear") : #imageLiteral(resourceName: "sharebutton"), for: .normal)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(shareButton)
         shareButton.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 16.0).isActive = true

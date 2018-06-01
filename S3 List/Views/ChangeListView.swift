@@ -11,13 +11,16 @@ import UIKit
 
 class ChangeListView: UIView {
     
+    let theme = ThemeManager.getTheme()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .white
+        self.backgroundColor = theme.backgroundColor
         
         let listManagerLabel = UILabel()
         listManagerLabel.text = "List Manager"
+        listManagerLabel.textColor = theme.titleColor
         listManagerLabel.font = UIFont.getAppFontBOLD(size: 32.0)
         listManagerLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(listManagerLabel)
@@ -28,6 +31,7 @@ class ChangeListView: UIView {
         let addNewLabel = UILabel()
         addNewLabel.text = "Add New List"
         addNewLabel.font = UIFont.getAppFontBOLD(size: 22.0)
+        addNewLabel.textColor = theme.titleColor
         addNewLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(addNewLabel)
         addNewLabel.topAnchor.constraint(equalTo: listManagerLabel.bottomAnchor, constant: 24.0).isActive = true
@@ -38,7 +42,7 @@ class ChangeListView: UIView {
         newItemTextField.attributedPlaceholder = NSAttributedString(string: " Your cool list name",
                                                                     attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])
         newItemTextField.font = UIFont.getAppFontLIGHT(size: 20.0)
-        newItemTextField.textColor = UIColor.darkGray
+        newItemTextField.textColor = theme.textColor
         newItemTextField.returnKeyType = .done
         newItemTextField.layer.borderColor = UIColor.lightGray.cgColor
         newItemTextField.layer.borderWidth = 0.5
@@ -52,6 +56,7 @@ class ChangeListView: UIView {
         // Access a shared list section...
         let shareCodeLabel = UILabel()
         shareCodeLabel.text = "Access a Shared List"
+        shareCodeLabel.textColor = theme.titleColor
         shareCodeLabel.font = UIFont.getAppFontBOLD(size: 22.0)
         shareCodeLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(shareCodeLabel)
@@ -77,6 +82,7 @@ class ChangeListView: UIView {
         // My lists sections...
         let myListsLabel = UILabel()
         myListsLabel.text = "My Lists"
+        myListsLabel.textColor = theme.titleColor
         myListsLabel.font = UIFont.getAppFontBOLD(size: 22.0)
         myListsLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(myListsLabel)
@@ -87,6 +93,7 @@ class ChangeListView: UIView {
         tableView.register(ChangeListTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = theme.backgroundColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: myListsLabel.bottomAnchor, constant: 4.0).isActive = true

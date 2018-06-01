@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UITabBarController {
     
+    let theme = ThemeManager.getTheme()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,5 +25,8 @@ class MainViewController: UITabBarController {
         settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "settings_tab"), tag: 2)
         
         self.viewControllers = [listViewController, changeListViewController, settingsViewController]
+        
+        self.tabBar.barTintColor = theme.backgroundColor
+        self.tabBar.tintColor = theme.titleColor
     }
 }

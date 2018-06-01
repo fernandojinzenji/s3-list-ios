@@ -10,17 +10,22 @@ import UIKit
 
 class ChangeListTableViewCell: UITableViewCell {
 
+    let theme = ThemeManager.getTheme()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.backgroundColor = theme.backgroundColor
+        
         let listNameLabel = UILabel()
         listNameLabel.text = "A list name here"
+        listNameLabel.textColor = theme.textColor
         listNameLabel.font = UIFont.getAppFontLIGHT(size: 20.0)
-        listNameLabel.textColor = UIColor.darkGray
+        listNameLabel.textColor = theme.textColor
         listNameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(listNameLabel)
         listNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        listNameLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        listNameLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true        
     }
     
     required init?(coder aDecoder: NSCoder) {
