@@ -20,7 +20,7 @@ class MainViewController: UITabBarController {
         changeListViewController.tabBarItem = UITabBarItem(title: "Change List", image: #imageLiteral(resourceName: "changelist_tab"), tag: 1)
         
         let settingsViewController = SettingsViewController()
-        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "changelist_tab"), tag: 2)
+        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "settings_tab"), tag: 2)
         
         self.viewControllers = [listViewController, changeListViewController, settingsViewController]
     }

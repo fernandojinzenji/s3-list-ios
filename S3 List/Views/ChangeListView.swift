@@ -24,6 +24,7 @@ class ChangeListView: UIView {
         listManagerLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 16.0).isActive = true
         listManagerLabel.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor, constant: 16.0).isActive = true
         
+        // Add a new list section...
         let addNewLabel = UILabel()
         addNewLabel.text = "Add New List"
         addNewLabel.font = UIFont.getAppFontBOLD(size: 22.0)
@@ -48,12 +49,13 @@ class ChangeListView: UIView {
         newItemTextField.heightAnchor.constraint(equalToConstant: 48.0).isActive = true
         newItemTextField.topAnchor.constraint(equalTo: addNewLabel.bottomAnchor, constant: 4.0).isActive = true
         
+        // Access a shared list section...
         let shareCodeLabel = UILabel()
         shareCodeLabel.text = "Access a Shared List"
         shareCodeLabel.font = UIFont.getAppFontBOLD(size: 22.0)
         shareCodeLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(shareCodeLabel)
-        shareCodeLabel.topAnchor.constraint(equalTo: newItemTextField.bottomAnchor, constant: 18.0).isActive = true
+        shareCodeLabel.topAnchor.constraint(equalTo: newItemTextField.bottomAnchor, constant: 24.0).isActive = true
         shareCodeLabel.leftAnchor.constraint(equalTo: listManagerLabel.leftAnchor, constant: -4.0).isActive = true
         
         let shareCodeTextField = UITextField()
@@ -72,12 +74,13 @@ class ChangeListView: UIView {
         shareCodeTextField.heightAnchor.constraint(equalToConstant: 42.0).isActive = true
         shareCodeTextField.topAnchor.constraint(equalTo: shareCodeLabel.bottomAnchor, constant: 4.0).isActive = true
         
+        // My lists sections...
         let myListsLabel = UILabel()
         myListsLabel.text = "My Lists"
         myListsLabel.font = UIFont.getAppFontBOLD(size: 22.0)
         myListsLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(myListsLabel)
-        myListsLabel.topAnchor.constraint(equalTo: shareCodeTextField.bottomAnchor, constant: 18.0).isActive = true
+        myListsLabel.topAnchor.constraint(equalTo: shareCodeTextField.bottomAnchor, constant: 24.0).isActive = true
         myListsLabel.leftAnchor.constraint(equalTo: listManagerLabel.leftAnchor, constant: -4.0).isActive = true
         
         let tableView = UITableView()

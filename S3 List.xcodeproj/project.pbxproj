@@ -25,6 +25,7 @@
 		9C8CB9BD20C101F800DAC945 /* ChangeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9BC20C101F800DAC945 /* ChangeListView.swift */; };
 		9C8CB9BF20C10F3600DAC945 /* ChangeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9BE20C10F3600DAC945 /* ChangeListTableViewCell.swift */; };
 		9C8CB9C120C111C000DAC945 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9C020C111C000DAC945 /* SettingsViewController.swift */; };
+		9C8CB9C320C1139800DAC945 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9C220C1139800DAC945 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		9C8CB9BC20C101F800DAC945 /* ChangeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListView.swift; sourceTree = "<group>"; };
 		9C8CB9BE20C10F3600DAC945 /* ChangeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListTableViewCell.swift; sourceTree = "<group>"; };
 		9C8CB9C020C111C000DAC945 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9C8CB9C220C1139800DAC945 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				9C6D644320BE6B8B00D19856 /* ListView.swift */,
 				9C8CB9BC20C101F800DAC945 /* ChangeListView.swift */,
 				9C8CB9BE20C10F3600DAC945 /* ChangeListTableViewCell.swift */,
+				9C8CB9C220C1139800DAC945 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				9C6D644720BE6CB900D19856 /* UIFont+custom.swift in Sources */,
 				9C28DEFB20BDF3AF00A65809 /* AppDelegate.swift in Sources */,
 				9C8CB9BF20C10F3600DAC945 /* ChangeListTableViewCell.swift in Sources */,
+				9C8CB9C320C1139800DAC945 /* SettingsView.swift in Sources */,
 				9C28DF1F20BDF45800A65809 /* List.swift in Sources */,
 				9C28DF2320BDF5ED00A65809 /* MainViewController.swift in Sources */,
 			);
