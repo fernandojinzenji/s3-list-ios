@@ -26,6 +26,7 @@
 		9C8CB9BF20C10F3600DAC945 /* ChangeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9BE20C10F3600DAC945 /* ChangeListTableViewCell.swift */; };
 		9C8CB9C120C111C000DAC945 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9C020C111C000DAC945 /* SettingsViewController.swift */; };
 		9C8CB9C320C1139800DAC945 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9C220C1139800DAC945 /* SettingsView.swift */; };
+		9C8CB9C520C1A28F00DAC945 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8CB9C420C1A28F00DAC945 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		9C8CB9BE20C10F3600DAC945 /* ChangeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeListTableViewCell.swift; sourceTree = "<group>"; };
 		9C8CB9C020C111C000DAC945 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9C8CB9C220C1139800DAC945 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9C8CB9C420C1A28F00DAC945 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				9C28DF1E20BDF45800A65809 /* List.swift */,
 				9C28DF2020BDF46D00A65809 /* Item.swift */,
+				9C8CB9C420C1A28F00DAC945 /* Theme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				9C8CB9BD20C101F800DAC945 /* ChangeListView.swift in Sources */,
 				9C8CB9C120C111C000DAC945 /* SettingsViewController.swift in Sources */,
 				9C6D643620BE690D00D19856 /* ListViewController.swift in Sources */,
+				9C8CB9C520C1A28F00DAC945 /* Theme.swift in Sources */,
 				9C8CB9BB20C08FB300DAC945 /* ChangeListViewController.swift in Sources */,
 				9C6D644420BE6B8B00D19856 /* ListView.swift in Sources */,
 				9C6D644720BE6CB900D19856 /* UIFont+custom.swift in Sources */,

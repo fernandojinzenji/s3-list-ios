@@ -21,16 +21,20 @@ class ListView: UIView {
     var newItemTextField: UITextField!
     var itemsViewHeightConstraint: NSLayoutConstraint!
     
+    let theme = ThemeManager.getTheme()
+    
     public var items = [Item]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .white
+        
+        self.backgroundColor = theme.backgroundColor
         
         let listNameLabel = UILabel()
         listNameLabel.text = "List Name"
         listNameLabel.font = UIFont.getAppFontBOLD(size: 32.0)
+        listNameLabel.textColor = theme.titleColor
         listNameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(listNameLabel)
         listNameLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 16.0).isActive = true
@@ -48,7 +52,7 @@ class ListView: UIView {
         let lastUpdateLabel = UILabel()
         lastUpdateLabel.text = "Last updated 10s ago"
         lastUpdateLabel.font = UIFont.getAppFontLIGHT(size: 16.0)
-        lastUpdateLabel.textColor = UIColor.darkGray
+        lastUpdateLabel.textColor = theme.textColor
         lastUpdateLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(lastUpdateLabel)
         lastUpdateLabel.topAnchor.constraint(equalTo: listNameLabel.bottomAnchor, constant: 4.0).isActive = true
@@ -103,7 +107,7 @@ class ListView: UIView {
         noItemsLabel = UILabel()
         noItemsLabel.text = "No items yet"
         noItemsLabel.font = UIFont.getAppFontLIGHT(size: 22.0)
-        noItemsLabel.textColor = UIColor.darkGray
+        noItemsLabel.textColor = theme.textColor
         noItemsLabel.translatesAutoresizingMaskIntoConstraints = false
         noItemsView.addSubview(noItemsLabel)
         noItemsLabel.centerXAnchor.constraint(equalTo: noItemsView.centerXAnchor).isActive = true
@@ -210,7 +214,7 @@ extension ListView {
             let itemNameLabel = UILabel()
             itemNameLabel.text = item.name.capitalized
             itemNameLabel.font = UIFont.getAppFontLIGHT(size: 22.0)
-            itemNameLabel.textColor = UIColor.darkGray
+            itemNameLabel.textColor = theme.textColor
             itemNameLabel.translatesAutoresizingMaskIntoConstraints = false
             itemsView.addSubview(itemNameLabel)
             itemNameLabel.centerYAnchor.constraint(equalTo: rowView.centerYAnchor).isActive = true
@@ -231,7 +235,7 @@ extension ListView {
         newItemTextField.attributedPlaceholder = NSAttributedString(string: "New item",
                                                                     attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])
         newItemTextField.font = UIFont.getAppFontLIGHT(size: 22.0)
-        newItemTextField.textColor = UIColor.darkGray
+        newItemTextField.textColor = theme.textColor
         newItemTextField.returnKeyType = .done
         newItemTextField.delegate = self
         itemsView.addSubview(newItemTextField)
